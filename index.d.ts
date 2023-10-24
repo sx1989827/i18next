@@ -1,5 +1,5 @@
 // Internal Helpers
-import type { $Dictionary } from './typescript/helpers.d.ts';
+import type { $Dictionary } from './typescript/helpers';
 import type {
   DefaultNamespace,
   FlatNamespace,
@@ -11,9 +11,9 @@ import type {
   ResourceKey,
   ResourceLanguage,
   TOptions,
-} from './typescript/options.d.ts';
+} from './typescript/options';
 
-import type { KeyPrefix, TFunction } from './typescript/t.d.ts';
+import type { KeyPrefix, TFunction } from './typescript/t';
 
 export interface WithT<Ns extends Namespace = DefaultNamespace> {
   // Expose parameterized t in the i18next interface hierarchy
@@ -265,6 +265,7 @@ export interface i18n {
    */
   getDataByLanguage(lng: string): { [key: string]: { [key: string]: string } } | undefined;
 
+
   /**
    * Returns a t function that defaults to given language or namespace.
    * Both params could be arrays of languages or namespaces and will be treated as fallbacks in that case.
@@ -274,6 +275,7 @@ export interface i18n {
    */
   getFixedT<
     Ns extends Namespace | null = DefaultNamespace,
+      // @ts-ignore
     TKPrefix extends KeyPrefix<ActualNs> = undefined,
     ActualNs extends Namespace = Ns extends null ? DefaultNamespace : Ns,
   >(
@@ -494,7 +496,6 @@ export interface i18n {
   emit(eventName: string, ...args: any[]): void;
 }
 
-export type * from './typescript/options.d.ts';
 export type {
   FallbackLngObjList,
   FallbackLng,
@@ -513,15 +514,14 @@ export type {
   Namespace,
   DefaultNamespace,
   FlatNamespace,
-} from './typescript/options.d.ts';
-export type * from './typescript/t.d.ts';
+} from './typescript/options';
 export type {
   TFunction,
   ParseKeys,
   TFunctionReturn,
   TFunctionDetailedResult,
   KeyPrefix,
-} from './typescript/t.d.ts';
+} from './typescript/t';
 
 declare const i18next: i18n;
 export default i18next;
